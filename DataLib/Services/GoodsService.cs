@@ -26,7 +26,7 @@ namespace DataLib.Services
         /// a list of goods of this category
         /// </summary>
         /// <exception cref="SqlException"></exception>
-        public async Task<SortedList<string, List<GoodInfo>>> GetAllGoodsAync()
+        public async Task<SortedList<string, List<GoodInfo>>> GetAllGoodsAsync()
         {
             return await Task.Run(() =>
             {
@@ -37,7 +37,7 @@ namespace DataLib.Services
                 foreach (GoodInfo goodInfo in goodInfosList)
                 {
                     string category = goodInfo.Category;
-                    if (categoriesSortedList.ContainsKey(goodInfo.Category))
+                    if (categoriesSortedList.ContainsKey(category))
                     {
                         categoriesSortedList[category].Add(goodInfo);
                     }
@@ -48,7 +48,6 @@ namespace DataLib.Services
                             goodInfo
                         };
                     }
-
                 }
 
                 return categoriesSortedList;

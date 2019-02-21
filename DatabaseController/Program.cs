@@ -56,7 +56,6 @@ namespace DatabaseController
                      },
                  };
                  Connector connector = new Connector(DatabaseSettings.СonnectionString);*/
-                GetRecords();
             }
             catch (Exception ex)
             {
@@ -66,13 +65,6 @@ namespace DatabaseController
             {
                 Console.ReadKey(true);
             }
-        }
-
-        private async static void GetRecords()
-        {
-            GoodsService goodsService = new GoodsService(DatabaseSettings.СonnectionString);
-            var sortedList = await goodsService.GetAllGoodsAync();
-            Console.WriteLine("Success");
         }
     }
 }
