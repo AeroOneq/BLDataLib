@@ -7,6 +7,9 @@ using AeroORMFramework;
 
 namespace DataLib.Models
 {
+    /// <summary>
+    /// Class which represents a single good
+    /// </summary>
     public class GoodInfo
     {
         [PrimaryKey]

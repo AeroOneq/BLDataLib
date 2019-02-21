@@ -8,10 +8,16 @@ using System.Data.SqlClient;
 
 namespace DataLib.Services
 {
+    /// <summary>
+    /// Class where all operations connected with goods and database are stored
+    /// </summary>
     public class GoodsService
     {
         private Database Database { get; }
 
+        /// <summary>
+        /// Initializes the connection with a given connection string
+        /// </summary>
         public GoodsService(string connectionString)
             => Database = new Database(connectionString);
 
