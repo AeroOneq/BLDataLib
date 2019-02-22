@@ -13,6 +13,21 @@ namespace DatabaseController
 {
     class Program
     {
+        public const string SERVER = "borrowlend222";
+        public const string DATABASE = "DOU";
+        public const string LOGIN = "roman";
+        public const string PASSWORD = "Cap_obviousness1";
+
+        /// <summary>
+        /// Connect to Azure Data Base
+        /// </summary>
+        public static string СonnectionString => $@"Data Source={SERVER}.database.windows.net;
+                       Initial Catalog={DATABASE};
+                       Integrated Security=True; 
+                       User ID={LOGIN};
+                       Password={PASSWORD}; 
+                       Trusted_Connection=False; 
+                       Encrypt=True;";
         static void Main(string[] args)
         {
             try
@@ -54,8 +69,8 @@ namespace DatabaseController
                          PaymentType = "Cash",
                          RentTime = new TimeSpan(5, 10, 0, 0)
                      },
-                 };
-                 Connector connector = new Connector(DatabaseSettings.СonnectionString);*/
+                 };*/
+                 GoodsService service = new GoodsService(СonnectionString);
             }
             catch (Exception ex)
             {

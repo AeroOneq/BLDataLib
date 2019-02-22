@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataLib.Models;
 using System.Data.SqlClient;
@@ -22,7 +19,7 @@ namespace DataLib.Services
             => Database = new Database(connectionString);
 
         /// <summary>
-        /// Created and returns sorted list where a key is a category and a value is 
+        /// Create and returns sorted list where a key is a category and a value is 
         /// a list of goods of this category
         /// </summary>
         /// <exception cref="SqlException"></exception>
@@ -31,27 +28,46 @@ namespace DataLib.Services
             return await Task.Run(() =>
             {
                 List<GoodInfo> goodInfosList = Database.GetAllGoods();
-                SortedList<string, List<GoodInfo>> categoriesSortedList
-                    = new SortedList<string, List<GoodInfo>>();
-
-                foreach (GoodInfo goodInfo in goodInfosList)
-                {
-                    string category = goodInfo.Category;
-                    if (categoriesSortedList.ContainsKey(category))
-                    {
-                        categoriesSortedList[category].Add(goodInfo);
-                    }
-                    else
-                    {
-                        categoriesSortedList[category] = new List<GoodInfo>
-                        {
-                            goodInfo
-                        };
-                    }
-                }
+                SortedList<string, List<GoodInfo>> categoriesSortedList =
+                    CreateCategorySortedList(goodInfosList);
 
                 return categoriesSortedList;
             });
         }
+        private SortedList<string, List<GoodInfo>> CreateCategorySortedList(
+            List<GoodInfo> goodInfosList)
+        {
+            SortedList<string, List<GoodInfo>> categoriesSortedList
+                = new SortedList<string, List<GoodInfo>>();
+            foreach (GoodInfo goodInfo in goodInfosList)
+            {
+                string category = goodInfo.Category;
+                if (categoriesSortedList.ContainsKey(category))
+                {
+                    categoriesSortedList[category].Add(goodInfo);
+                }
+                else
+                {
+                    categoriesSortedList[category] = new List<GoodInfo>
+                        {
+                            goodInfo
+                        };
+                }
+            }
+            return categoriesSortedList;
+        }
+
+        /// <summary>
+        /// Insert given good into the GoodInfo table
+        /// </summary>
+        /// <exception cref="SqlException"></exception>
+        public async void InsertGoodAsync(GoodInfo goodInfo)
+        {
+            await Task.Run(() =>
+            {
+                Database.InsertGood(goodInfo);
+            });
+        }
+
     }
 }

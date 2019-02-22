@@ -27,5 +27,9 @@ namespace DataLib
             return Connector.GetAllRecords<GoodInfo>();
         }
 
+        public void InsertGood(GoodInfo goodInfo)
+        {
+            Connector.Insert(goodInfo);
+        }
     }
 }
