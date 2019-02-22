@@ -28,10 +28,7 @@ namespace DataLib.Services
             return await Task.Run(() =>
             {
                 List<GoodInfo> goodInfosList = Database.GetAllGoods();
-                SortedList<string, List<GoodInfo>> categoriesSortedList =
-                    CreateCategorySortedList(goodInfosList);
-
-                return categoriesSortedList;
+                return CreateCategorySortedList(goodInfosList); ;
             });
         }
         private SortedList<string, List<GoodInfo>> CreateCategorySortedList(
@@ -58,7 +55,7 @@ namespace DataLib.Services
         }
 
         /// <summary>
-        /// Insert given good into the GoodInfo table
+        /// Inserts the given good into the GoodInfo table
         /// </summary>
         /// <exception cref="SqlException"></exception>
         public async void InsertGoodAsync(GoodInfo goodInfo)
