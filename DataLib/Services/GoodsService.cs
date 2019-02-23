@@ -19,6 +19,17 @@ namespace DataLib.Services
             => Database = new Database(connectionString);
 
         /// <summary>
+        /// Gets all goods of a given category
+        /// </summary>
+        /// <returns>The List of GoodInfo Objects</returns>
+        public async Task<List<GoodInfo>> GetAllGoodsAsync(string category)
+        {
+            return await Task.Run(() =>
+            {
+                return Database.GetAllGoods(category);
+            });
+        }
+        /// <summary>
         /// Create and returns sorted list where a key is a category and a value is 
         /// a list of goods of this category
         /// </summary>
@@ -58,13 +69,12 @@ namespace DataLib.Services
         /// Inserts the given good into the GoodInfo table
         /// </summary>
         /// <exception cref="SqlException"></exception>
-        public async void InsertGoodAsync(GoodInfo goodInfo)
+        public async Task InsertGoodAsync(GoodInfo goodInfo)
         {
             await Task.Run(() =>
             {
                 Database.InsertGood(goodInfo);
             });
         }
-
     }
 }

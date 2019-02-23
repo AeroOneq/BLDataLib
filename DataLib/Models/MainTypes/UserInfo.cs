@@ -7,12 +7,10 @@ using AeroORMFramework;
 
 namespace DataLib.Models
 {
-    /// <summary>
-    /// Class which represents a songle user
-    /// </summary>
     public class UserInfo
     {
         [PrimaryKey]
+        [AutoincrementID]
         [CanBeNull(false)]
         public int ID { get; set; }
         [CanBeNull(false)]

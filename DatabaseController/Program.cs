@@ -21,7 +21,7 @@ namespace DatabaseController
         /// <summary>
         /// Connect to Azure Data Base
         /// </summary>
-        public static string СonnectionString => $@"Data Source={SERVER}.database.windows.net;
+        public static string ConnectionString => $@"Data Source={SERVER}.database.windows.net;
                        Initial Catalog={DATABASE};
                        Integrated Security=True; 
                        User ID={LOGIN};
@@ -32,7 +32,7 @@ namespace DatabaseController
         {
             try
             {
-                /* byte[] image;
+                 byte[] image;
                  using (FileStream fs = new FileStream("C:\\Users\\Aero\\Desktop\\secondCat.jpg", FileMode.Open,
                      FileAccess.Read))
                  {
@@ -43,11 +43,10 @@ namespace DatabaseController
 
                  GoodInfo goodInfo = new GoodInfo()
                  {
-                     ID = 1,
                      CreatorID = 0,
                      Name = "Дрель - водоворт",
                      Description = "я в тильте СУКА ЭТУ ДРЕЛЬ!!! !!!!!11111",
-                     Category = "Крутилка",
+                     Category = "Гвоздь",
                      CreationDate = DateTime.Now,
                      Address = new Address
                      {
@@ -69,8 +68,11 @@ namespace DatabaseController
                          PaymentType = "Cash",
                          RentTime = new TimeSpan(5, 10, 0, 0)
                      },
-                 };*/
-                 GoodsService service = new GoodsService(СonnectionString);
+                 };
+
+
+
+                Go(goodInfo);
             }
             catch (Exception ex)
             {
@@ -80,6 +82,22 @@ namespace DatabaseController
             {
                 Console.ReadKey(true);
             }
+        }
+
+        private async static void Go(GoodInfo good)
+        {
+            byte[] image;
+            using (FileStream fs = new FileStream("C:\\Users\\Aero\\Downloads\\applicationIcon.png", FileMode.Open,
+                FileAccess.Read))
+            {
+                image = new byte[fs.Length];
+                fs.Read(image, 0, (int)fs.Length);
+                fs.Close();
+            }
+            CategoryService categoryService = new CategoryService(ConnectionString);
+            List<CategoryInfo> categoryServices = await categoryService.GetAllCategories();
+
+            Console.WriteLine("Success");
         }
     }
 }

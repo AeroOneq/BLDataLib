@@ -7,13 +7,11 @@ using AeroORMFramework;
 
 namespace DataLib.Models
 {
-    /// <summary>
-    /// Class which represents a single good
-    /// </summary>
     public class GoodInfo
     {
         [PrimaryKey]
         [CanBeNull(false)]
+        [AutoincrementID]
         public int ID { get; set; }
         [CanBeNull(false)]
         public int CreatorID { get; set; }
@@ -36,5 +34,7 @@ namespace DataLib.Models
         [CanBeNull(false)]
         [Json]
         public Parameters Parameters { get; set; }
+
+
     }
 }

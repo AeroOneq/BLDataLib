@@ -26,10 +26,18 @@ namespace DataLib
         {
             return Connector.GetAllRecords<GoodInfo>();
         }
-
+        public List<GoodInfo> GetAllGoods(string category)
+        {
+            return Connector.GetRecords<GoodInfo>("Category", category);
+        }
         public void InsertGood(GoodInfo goodInfo)
         {
             Connector.Insert(goodInfo);
+        }
+
+        public List<CategoryInfo> GetAllCategories()
+        {
+            return Connector.GetAllRecords<CategoryInfo>();
         }
     }
 }
