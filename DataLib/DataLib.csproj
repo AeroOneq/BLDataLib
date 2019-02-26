@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="Interfaces\ICategoryService.cs" />
+    <Compile Include="Interfaces\IGoodsService.cs" />
     <Compile Include="Models\MainTypes\CategoryInfo.cs" />
     <Compile Include="Models\MainTypes\UserInfo.cs" />
     <Compile Include="Models\UtilityTypes\Address.cs" />

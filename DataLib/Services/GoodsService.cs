@@ -2,13 +2,14 @@
 using System.Threading.Tasks;
 using DataLib.Models;
 using System.Data.SqlClient;
+using DataLib.Interfaces;
 
 namespace DataLib.Services
 {
     /// <summary>
     /// Class where all operations connected with goods and database are stored
     /// </summary>
-    public class GoodsService
+    public class GoodsService : IGoodsService
     {
         private Database Database { get; }
 
@@ -22,7 +23,7 @@ namespace DataLib.Services
         /// Gets all goods of a given category
         /// </summary>
         /// <returns>The List of GoodInfo Objects</returns>
-        public async Task<List<GoodInfo>> GetAllGoodsAsync(string category)
+        public async Task<List<GoodInfo>> GetAllAsync(string category)
         {
             return await Task.Run(() =>
             {
@@ -34,7 +35,7 @@ namespace DataLib.Services
         /// a list of goods of this category
         /// </summary>
         /// <exception cref="SqlException"></exception>
-        public async Task<SortedList<string, List<GoodInfo>>> GetAllGoodsAsync()
+        public async Task<SortedList<string, List<GoodInfo>>> GetAllAsync()
         {
             return await Task.Run(() =>
             {
@@ -69,7 +70,7 @@ namespace DataLib.Services
         /// Inserts the given good into the GoodInfo table
         /// </summary>
         /// <exception cref="SqlException"></exception>
-        public async Task InsertGoodAsync(GoodInfo goodInfo)
+        public async Task InsertAsync(GoodInfo goodInfo)
         {
             await Task.Run(() =>
             {

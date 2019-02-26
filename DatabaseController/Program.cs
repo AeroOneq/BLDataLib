@@ -86,6 +86,7 @@ namespace DatabaseController
 
         private async static void Go(GoodInfo good)
         {
+            Connector connector = new Connector(ConnectionString);
             byte[] image;
             using (FileStream fs = new FileStream("C:\\Users\\Aero\\Downloads\\applicationIcon.png", FileMode.Open,
                 FileAccess.Read))
@@ -94,8 +95,7 @@ namespace DatabaseController
                 fs.Read(image, 0, (int)fs.Length);
                 fs.Close();
             }
-            CategoryService categoryService = new CategoryService(ConnectionString);
-            List<CategoryInfo> categoryServices = await categoryService.GetAllCategories();
+            connector.Insert<CategoryInfo>(new CategoryInfo { CategoryName = "Инструменты", Icon = image });
 
             Console.WriteLine("Success");
         }

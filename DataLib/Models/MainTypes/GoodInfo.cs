@@ -34,7 +34,5 @@ namespace DataLib.Models
         [CanBeNull(false)]
         [Json]
         public Parameters Parameters { get; set; }
-
-
     }
 }

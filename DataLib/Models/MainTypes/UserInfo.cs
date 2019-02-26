@@ -34,18 +34,6 @@ namespace DataLib.Models
         [CanBeNull(false)]
         public string PhoneNumber { get; set; }
         [CanBeNull(false)]
-        [Json]
-        public List<int> DealsIDList { get; set; }
-        [CanBeNull(false)]
-        [Json]
-        public List<int> GoodsIDList { get; set; }
-        [CanBeNull(false)]
-        [Json]
-        public List<int> OpinionsIDList { get; set; }
-        [CanBeNull(false)]
-        [Json]
-        public List<int> ChatsIDList { get; set; }
-        [CanBeNull(false)]
         public string Promocode { get; set; }
         [CanBeNull(false)]
         public int Raiting { get; set; }
